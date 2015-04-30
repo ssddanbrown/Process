@@ -1,4 +1,4 @@
-<?php namespace Laravel\Exceptions;
+<?php namespace Process\Exceptions;
 
 use Exception;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;

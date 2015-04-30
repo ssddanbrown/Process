@@ -1,6 +1,6 @@
-<?php namespace Laravel\Http\Controllers\Auth;
+<?php namespace Process\Http\Controllers\Auth;
 
-use Laravel\Http\Controllers\Controller;
+use Process\Http\Controllers\Controller;
 use Illuminate\Contracts\Auth\Guard;
 use Illuminate\Contracts\Auth\Registrar;
 use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers;

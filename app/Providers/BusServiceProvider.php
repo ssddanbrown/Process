@@ -1,4 +1,4 @@
-<?php namespace Laravel\Providers;
+<?php namespace Process\Providers;
 
 use Illuminate\Bus\Dispatcher;
 use Illuminate\Support\ServiceProvider;
@@ -16,7 +16,7 @@ class BusServiceProvider extends ServiceProvider {
 		$dispatcher->mapUsing(function($command)
 		{
 			return Dispatcher::simpleMapping(
-				$command, 'Laravel\Commands', 'Laravel\Handlers\Commands'
+				$command, 'Process\Commands', 'Process\Handlers\Commands'
 			);
 		});
 	}

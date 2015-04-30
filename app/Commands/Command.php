@@ -1,4 +1,4 @@
-<?php namespace Laravel\Commands;
+<?php namespace Process\Commands;
 
 abstract class Command {
 

@@ -1,4 +1,4 @@
-<?php namespace Laravel\Http\Middleware;
+<?php namespace Process\Http\Middleware;
 
 use Closure;
 use Illuminate\Contracts\Auth\Guard;

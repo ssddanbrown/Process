@@ -1,4 +1,4 @@
-<?php namespace Laravel\Providers;
+<?php namespace Process\Providers;
 
 use Illuminate\Contracts\Events\Dispatcher as DispatcherContract;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;

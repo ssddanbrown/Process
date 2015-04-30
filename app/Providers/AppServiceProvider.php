@@ -1,4 +1,4 @@
-<?php namespace Laravel\Providers;
+<?php namespace Process\Providers;
 
 use Illuminate\Support\ServiceProvider;
 
@@ -27,7 +27,7 @@ class AppServiceProvider extends ServiceProvider {
 	{
 		$this->app->bind(
 			'Illuminate\Contracts\Auth\Registrar',
-			'Laravel\Services\Registrar'
+			'Process\Services\Registrar'
 		);
 	}
 

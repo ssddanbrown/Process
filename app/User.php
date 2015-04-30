@@ -1,4 +1,4 @@
-<?php namespace Laravel;
+<?php namespace Process;
 
 use Illuminate\Auth\Authenticatable;
 use Illuminate\Database\Eloquent\Model;

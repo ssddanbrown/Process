@@ -1,5 +1,5 @@
 suites:
     main:
-        namespace: Laravel
-        psr4_prefix: Laravel
+        namespace: Process
+        psr4_prefix: Process
         src_path: app

@@ -1,4 +1,4 @@
-<?php namespace Laravel\Http\Controllers;
+<?php namespace Process\Http\Controllers;
 
 use Illuminate\Foundation\Bus\DispatchesCommands;
 use Illuminate\Routing\Controller as BaseController;

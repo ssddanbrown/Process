@@ -1,4 +1,4 @@
-<?php namespace Laravel\Providers;
+<?php namespace Process\Providers;
 
 use Illuminate\Routing\Router;
 use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
@@ -12,7 +12,7 @@ class RouteServiceProvider extends ServiceProvider {
 	 *
 	 * @var string
 	 */
-	protected $namespace = 'Laravel\Http\Controllers';
+	protected $namespace = 'Process\Http\Controllers';
 
 	/**
 	 * Define your route model bindings, pattern filters, etc.

@@ -1,4 +1,4 @@
-<?php namespace Laravel\Console;
+<?php namespace Process\Console;
 
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
@@ -11,7 +11,7 @@ class Kernel extends ConsoleKernel {
 	 * @var array
 	 */
 	protected $commands = [
-		'Laravel\Console\Commands\Inspire',
+		'Process\Console\Commands\Inspire',
 	];
 
 	/**

@@ -1,4 +1,4 @@
-<?php namespace Laravel\Providers;
+<?php namespace Process\Providers;
 
 use Illuminate\Support\ServiceProvider;
 

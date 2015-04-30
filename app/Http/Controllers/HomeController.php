@@ -1,4 +1,4 @@
-<?php namespace Laravel\Http\Controllers;
+<?php namespace Process\Http\Controllers;
 
 class HomeController extends Controller {
 
