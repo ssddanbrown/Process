@@ -15,4 +15,13 @@ class Project extends BasePlanModel {
         return $this->hasMany('Process\Models\Group');
     }
 
+
+    /**
+     * Returns a link to access this project.
+     */
+    public function getLink()
+    {
+        return '/p/' . $this->id;
+    }
+
 }

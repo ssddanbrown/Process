@@ -148,6 +148,7 @@ return [
         /*
          * Additions
          */
+        'Process\Providers\ViewComposerServiceProvider',
         'Collective\Html\HtmlServiceProvider',
 	],
 

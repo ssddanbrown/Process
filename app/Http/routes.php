@@ -11,7 +11,9 @@
 |
 */
 
-Route::get('home', 'HomeController@index');
+Route::get('/', 'HomeController@index');
+
+Route::get('/new', 'ProjectController@create');
 
 Route::controllers([
 	'auth' => 'Auth\AuthController',

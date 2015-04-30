@@ -6,7 +6,6 @@ use Parsedown;
 
 class BasePlanModel extends Model {
 
-
     /**
      * Defines the relation to comments. Every model that
      * extends this class will have access to comments.
@@ -27,9 +26,9 @@ class BasePlanModel extends Model {
      * @param Parsedown $parsedown
      * @return bool|void
      */
-    public function save(array $options = array(), Parsedown $parsedown)
+    public function save(array $options = array())
     {
-        $this->descriptionHtml = $parsedown->text($this->description);
+        //$this->descriptionHtml = $this->parsedown->text($this->description);
         parent::save($options);
     }
 
