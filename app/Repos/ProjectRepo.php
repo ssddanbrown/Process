@@ -47,7 +47,7 @@ class ProjectRepo {
     public function saveNew($attributes = array())
     {
         $this->project->fill($attributes);
-        $this->auth->user()->save($this->project);
+        $this->auth->user()->projects()->save($this->project);
         return $this->project;
     }
 
