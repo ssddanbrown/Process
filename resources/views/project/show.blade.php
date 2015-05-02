@@ -12,7 +12,25 @@
     </div>
 
     <div class="text-muted">
-        {!! $project->description_html !!}
+        {!! $project->html !!}
+    </div>
+
+    <div class="row">
+
+        <div class="col-md-6">
+            @include('comments/feed', ['commentable' => $project])
+        </div>
+
+        <div class="col-md-6">
+            <div class="clearfix">
+                <h2 class="pull-left">Groups</h2>
+                <div class="pull-right">
+                    <a class="btn btn-success" href="{{ $project->getLink() . '/group/new' }}">New Group</a>
+                </div>
+            </div>
+            @include('group/parts/list-with-tasks', ['groups' => $project->groups])
+        </div>
+
     </div>
 
 </div>

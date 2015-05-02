@@ -4,7 +4,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Group extends BasePlanModel {
 
-    protected $fillable = ['name', 'description'];
+    protected $fillable = ['name', 'text'];
 
     /**
      * Defines the relation to a project.
@@ -24,6 +24,11 @@ class Group extends BasePlanModel {
     public function tasks()
     {
         return $this->hasMany('Process\Models\Task');
+    }
+
+    public function getLink()
+    {
+        return '/project/' . $this->project_id . '/group/' . $this->id;
     }
 
 }

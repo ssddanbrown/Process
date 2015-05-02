@@ -80,9 +80,16 @@ class ProjectController extends Controller {
         return redirect($project->getLink());
     }
 
+    /**
+     * Deletes a project from the system.
+     *
+     * @param $id
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+     */
     public function destroy($id)
     {
         $project = $this->project->findOrFail($id);
+        $project->comments()->delete();
         $project->delete();
         $this->messages->success('Project successfully deleted');
         return redirect('/');

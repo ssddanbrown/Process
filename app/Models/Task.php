@@ -15,4 +15,9 @@ class Task extends BasePlanModel {
         return $this->belongsTo('Process\Models\Group');
     }
 
+    public function getLink()
+    {
+        return '/project/' . $this->group->project->id . '/task/' . $this->id;
+    }
+
 }

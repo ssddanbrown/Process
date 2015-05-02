@@ -2,7 +2,7 @@
 
 use Process\Http\Requests\Request;
 
-class BasePlanRequest extends Request {
+class CommentRequest extends Request {
 
 	/**
 	 * Determine if the user is authorized to make this request.
@@ -22,8 +22,7 @@ class BasePlanRequest extends Request {
 	public function rules()
 	{
 		return [
-			'name' => 'required|string|min:4',
-            'text' => 'string'
+			'text' => 'required|string'
 		];
 	}
 

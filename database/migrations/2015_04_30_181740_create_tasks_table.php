@@ -16,8 +16,8 @@ class CreateTasksTable extends Migration {
 		{
             $table->increments('id');
             $table->string('name');
-            $table->text('description');
-            $table->mediumText('description_html');
+            $table->text('text');
+            $table->mediumText('html');
             $table->integer('user_id');
             $table->integer('group_id');
             $table->boolean('complete');

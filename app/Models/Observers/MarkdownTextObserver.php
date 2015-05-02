@@ -2,7 +2,7 @@
 
 use Parsedown;
 
-class MarkdownDescriptionObserver {
+class MarkdownTextObserver {
 
     protected $parsedown;
 
@@ -13,7 +13,7 @@ class MarkdownDescriptionObserver {
 
     public function saving($model)
     {
-        $model->description_html = $this->parsedown->text($model->description);
+        $model->html = $this->parsedown->text($model->text);
     }
 
 }

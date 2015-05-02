@@ -2,7 +2,7 @@
 
 class Project extends BasePlanModel {
 
-	protected $fillable = ['name', 'description'];
+	protected $fillable = ['name', 'text'];
 
 
     /**
@@ -21,7 +21,7 @@ class Project extends BasePlanModel {
      */
     public function getLink()
     {
-        return '/p/' . $this->id;
+        return '/project/' . $this->id;
     }
 
 }

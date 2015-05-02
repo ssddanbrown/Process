@@ -1,11 +1,10 @@
 <?php namespace Process\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use Parsedown;
 
 class Comment extends Model {
 
-	protected $fillable = ['description'];
+	protected $fillable = ['text'];
 
     /**
      * Define the polymorphic relation.
@@ -15,6 +14,11 @@ class Comment extends Model {
     public function commentable()
     {
         return $this->morphTo();
+    }
+
+    public function user()
+    {
+        return $this->belongsTo('Process\User');
     }
 
 

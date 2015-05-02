@@ -2,7 +2,7 @@
 
 use Process\Http\Requests\Request;
 
-class BasePlanRequest extends Request {
+class CreateTaskRequest extends Request {
 
 	/**
 	 * Determine if the user is authorized to make this request.
@@ -22,8 +22,8 @@ class BasePlanRequest extends Request {
 	public function rules()
 	{
 		return [
-			'name' => 'required|string|min:4',
-            'text' => 'string'
+            'name' => 'required|string|min:4',
+            'group_id' => 'required|integer|exists:groups,id'
 		];
 	}
 
