@@ -5,22 +5,25 @@
 <div class="container">
 
     <div class="row">
-        <div class="col-md-8 col-md-offset-1">
-            <h1>Create a project</h1>
+        <div class="col-md-8 col-md-offset-2">
+            <div class="page-header">
+                <h1>Create a new project</h1>
+            </div>
+
         </div>
     </div>
 
     <div class="row">
-        <div class="col-md-5 col-md-offset-1">
-            <form class="form" action="/new" method="POST">
-                <input type="hidden" name="_token" value="{{ csrf_token() }}"/>
+        <div class="col-md-5 col-md-offset-2">
+            {!! Form::open(['url' => '/new']) !!}
 
-                <div class="form-group @if ($errors->has('name')) has-error @endif">
-                    <label for="name">Project Name</label>
-                    <input type="text" id="name" class="form-control" name="name" placeholder="A name for your new project" value="{{ Input::old('name') }}">
-                    @if ($errors->has('name')) <p class="help-block">{{ $errors->first('name') }}</p> @endif
+                @include('project/form')
+
+                <div class="form-group">
+                    <button class="btn btn-success" type="submit">Create project</button>
                 </div>
-            </form>
+
+            {!! Form::close() !!}
         </div>
     </div>
 

@@ -2,7 +2,6 @@
 
 
 use Illuminate\Database\Eloquent\Model;
-use Parsedown;
 
 class BasePlanModel extends Model {
 
@@ -15,21 +14,6 @@ class BasePlanModel extends Model {
     public function comments()
     {
         return $this->morphMany('Process\Models\Comment', 'commentable');
-    }
-
-
-    /**
-     * Override the normal save function to automatically
-     * save the generated html description.
-     *
-     * @param array $options
-     * @param Parsedown $parsedown
-     * @return bool|void
-     */
-    public function save(array $options = array())
-    {
-        //$this->descriptionHtml = $this->parsedown->text($this->description);
-        parent::save($options);
     }
 
 

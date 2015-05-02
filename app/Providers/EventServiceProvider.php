@@ -2,6 +2,13 @@
 
 use Illuminate\Contracts\Events\Dispatcher as DispatcherContract;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
+use Illuminate\Support\Facades\App;
+use Process\Models\BasePlanModel;
+use Process\Models\Comment;
+use Process\Models\Group;
+use Process\Models\Observers\MarkdownDescriptionObserver;
+use Process\Models\Project;
+use Process\Models\Task;
 
 class EventServiceProvider extends ServiceProvider {
 
@@ -26,7 +33,11 @@ class EventServiceProvider extends ServiceProvider {
 	{
 		parent::boot($events);
 
-		//
+        $markdownDescriptionObserver = app('Process\Models\Observers\MarkdownDescriptionObserver');
+		Project::observe($markdownDescriptionObserver);
+		Group::observe($markdownDescriptionObserver);
+		Task::observe($markdownDescriptionObserver);
+		Comment::observe($markdownDescriptionObserver);
 	}
 
 }

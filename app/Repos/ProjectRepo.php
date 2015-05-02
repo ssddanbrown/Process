@@ -1,21 +1,23 @@
 <?php namespace Process\Repos;
 
 
-use Illuminate\Support\Facades\Auth;
 use Process\Models\Project;
+use Illuminate\Contracts\Auth\Guard as Auth;
 
 class ProjectRepo {
 
     protected $project;
+    protected $auth;
 
-    function __construct(Project $project)
+    function __construct(Project $project, Auth $auth)
     {
         $this->project = $project;
+        $this->auth = $auth;
     }
 
     public function getUserProjects()
     {
-        return Auth::user()->projects()->get();
+        return $this->auth->user()->projects()->get();
     }
 
 }

@@ -17,18 +17,5 @@ class Comment extends Model {
         return $this->morphTo();
     }
 
-    /**
-     * Override the normal save function to automatically
-     * save the generated html description.
-     *
-     * @param array $options
-     * @param Parsedown $parsedown
-     * @return bool|void
-     */
-    public function save(array $options = array(), Parsedown $parsedown)
-    {
-        $this->descriptionHtml = $parsedown->text($this->description);
-        parent::save($options);
-    }
 
 }
