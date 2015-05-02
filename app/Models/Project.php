@@ -1,6 +1,6 @@
 <?php namespace Process\Models;
 
-class Project extends BasePlanModel {
+class Project extends Commentable {
 
 	protected $fillable = ['name', 'text'];
 

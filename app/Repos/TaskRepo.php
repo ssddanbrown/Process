@@ -1,6 +1,7 @@
 <?php namespace Process\Repos;
 
 use Illuminate\Contracts\Auth\Guard as Auth;
+use Process\Models\Group;
 use Process\Models\Task;
 
 class TaskRepo {
@@ -21,7 +22,20 @@ class TaskRepo {
      */
     public function find($id)
     {
-        return $this->task->findOfFail($id);
+        return $this->task->findOrFail($id);
+    }
+
+    /**
+     * Saves a new Task.
+     *
+     * @param array $attributes
+     * @param Group $group
+     */
+    public function saveNew($attributes, Group $group)
+    {
+        $this->task->fill($attributes);
+        $this->task->user_id = $this->auth->user()->id;
+        $group->tasks()->save($this->task);
     }
 
     /**

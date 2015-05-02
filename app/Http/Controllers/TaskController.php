@@ -1,41 +1,33 @@
 <?php namespace Process\Http\Controllers;
 
 use Process\Http\Requests;
-use Illuminate\Contracts\Auth\Guard as Auth;
 use Process\Http\Requests\CreateTaskRequest;
-use Process\Http\Requests\Request;
-use Process\Models\Group;
-use Process\Models\Task;
+use Process\Repos\GroupRepo;
+use Process\Repos\TaskRepo;
 
 class TaskController extends Controller {
 
     protected $task;
-    protected $group;
+    protected $taskRepo;
+    protected $groupRepo;
     protected $auth;
 
-    function __construct(Task $task, Group $group, Auth $auth)
+    function __construct(TaskRepo $taskRepo, GroupRepo $groupRepo)
     {
-        $this->task = $task;
-        $this->group = $group;
-        $this->auth = $auth;
+        $this->taskRepo = $taskRepo;
+        $this->groupRepo = $groupRepo;
     }
 
     /**
-     * Creates and returns a populated task
+     * Shows the task page.
      *
-     * @param Request $request
-     * @return $this
+     * @param $projectId
+     * @param $taskId
+     * @return \Illuminate\View\View
      */
-    private function getNewTask(Request $request)
-    {
-        $task = $this->task->fill($request->all());
-        $task->user_id = $this->auth->user()->id;
-        return $task;
-    }
-
     public function show($projectId, $taskId)
     {
-        $task = $this->task->findOrFail($taskId);
+        $task = $this->taskRepo->find($taskId);
         return view('task/show', ['task' => $task]);
     }
 
@@ -48,9 +40,8 @@ class TaskController extends Controller {
      */
 	public function save($projectId, CreateTaskRequest $request)
     {
-        $group = $this->group->findOrFail($request->get('group_id'));
-        $task = $this->getNewTask($request);
-        $group->tasks()->save($task);
+        $group = $this->groupRepo->find($request->get('group_id'));
+        $this->taskRepo->saveNew($request->all(), $group);
         return redirect($group->getLink());
     }
 

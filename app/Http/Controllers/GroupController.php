@@ -1,42 +1,22 @@
 <?php namespace Process\Http\Controllers;
 
 use Process\Http\Requests;
-use Process\Http\Controllers\Controller;
-
-use Illuminate\Http\Request;
 use Process\Http\Requests\BasePlanRequest;
-use Process\Models\Group;
+use Process\Repos\GroupRepo;
 use Process\Repos\ProjectRepo;
-use Illuminate\Contracts\Auth\Guard as Auth;
-use Process\Services\MessageService;
+use Process\Services\MessageService as Messages;
 
 class GroupController extends Controller {
 
-
-    protected $group;
+    protected $groupRepo;
     protected $projectRepo;
-    protected $auth;
     protected $messages;
 
-    function __construct(Group $group, ProjectRepo $projectRepo, Auth $auth, MessageService $messages)
+    function __construct(GroupRepo $groupRepo, ProjectRepo $projectRepo, Messages $messages)
     {
-        $this->group = $group;
+        $this->groupRepo = $groupRepo;
         $this->projectRepo = $projectRepo;
-        $this->auth = $auth;
         $this->messages = $messages;
-    }
-
-    /**
-     * Gets a new group filled group.
-     *
-     * @param Request $request
-     * @return Group
-     */
-    private function getNewGroup(Request $request)
-    {
-        $this->group->fill($request->all());
-        $this->group->user_id = $this->auth->user()->id;
-        return $this->group;
     }
 
 
@@ -49,7 +29,7 @@ class GroupController extends Controller {
      */
     public function show($projectId, $groupId)
     {
-        $group = $this->group->findOrFail($groupId);
+        $group = $this->groupRepo->find($groupId);
         return view('group/show', ['group' => $group]);
     }
 
@@ -61,7 +41,7 @@ class GroupController extends Controller {
      */
 	public function create($projectId)
     {
-        $project = $this->projectRepo->findOrFail($projectId);
+        $project = $this->projectRepo->find($projectId);
         return view('group/create', ['project' => $project]);
     }
 
@@ -74,9 +54,8 @@ class GroupController extends Controller {
      */
     public function save($projectId, BasePlanRequest $request)
     {
-        $project = $this->projectRepo->findOrFail($projectId);
-        $group = $this->getNewGroup($request);
-        $project->groups()->save($group);
+        $project = $this->projectRepo->find($projectId);
+        $this->groupRepo->saveNew($request->all(), $project);
         return redirect($project->getLink());
     }
 
@@ -88,13 +67,13 @@ class GroupController extends Controller {
      */
     public function edit($projectId, $groupId)
     {
-        $group = $this->group->findOrFail($groupId);
+        $group = $this->groupRepo->find($groupId);
         return view('group/edit', ['group' => $group]);
     }
 
     public function update($projectId, $groupId, BasePlanRequest $request)
     {
-        $group = $this->group->findOrFail($groupId);
+        $group = $this->groupRepo->find($groupId);
         $group->fill($request->all());
         $group->save();
         $this->messages->success('Group updated successfully');
@@ -110,10 +89,9 @@ class GroupController extends Controller {
      */
     public function destroy($projectId, $groupId)
     {
-        $group = $this->group->findOrFail($groupId);
+        $group = $this->groupRepo->find($groupId);
         $project = $group->project;
-        $group->comments()->delete();
-        $group->delete();
+        $this->groupRepo->destroy($group);
         $this->messages->success('Group successfully deleted');
         return redirect($project->getLink());
     }

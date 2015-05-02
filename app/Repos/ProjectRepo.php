@@ -39,6 +39,19 @@ class ProjectRepo {
     }
 
     /**
+     * Save a new project.
+     *
+     * @param array $attributes
+     * @return Project
+     */
+    public function saveNew($attributes = array())
+    {
+        $this->project->fill($attributes);
+        $this->auth->user()->save($this->project);
+        return $this->project;
+    }
+
+    /**
      * Destroy the given Project and all its dependencies.
      *
      * @param Project $project

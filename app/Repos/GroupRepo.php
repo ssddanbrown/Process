@@ -3,6 +3,7 @@
 
 use Illuminate\Contracts\Auth\Guard as Auth;
 use Process\Models\Group;
+use Process\Models\Project;
 
 class GroupRepo {
 
@@ -26,6 +27,21 @@ class GroupRepo {
     public function find($id)
     {
         return $this->group->findOrFail($id);
+    }
+
+    /**
+     * Saves a new Group.
+     *
+     * @param array $attributes
+     * @param Project $project
+     * @return Group
+     */
+    public function saveNew($attributes, Project $project)
+    {
+        $this->group->fill($attributes);
+        $this->group->user_id = $this->auth->user()->id;
+        $project->groups()->save($this->group);
+        return $this->group;
     }
 
     /**

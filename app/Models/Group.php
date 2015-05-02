@@ -2,7 +2,7 @@
 
 use Illuminate\Database\Eloquent\Model;
 
-class Group extends BasePlanModel {
+class Group extends Commentable {
 
     protected $fillable = ['name', 'text'];
 

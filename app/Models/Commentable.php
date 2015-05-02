@@ -3,7 +3,7 @@
 
 use Illuminate\Database\Eloquent\Model;
 
-class BasePlanModel extends Model {
+class Commentable extends Model {
 
     /**
      * Defines the relation to comments. Every model that

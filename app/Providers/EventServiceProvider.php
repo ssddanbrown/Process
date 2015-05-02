@@ -3,7 +3,7 @@
 use Illuminate\Contracts\Events\Dispatcher as DispatcherContract;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
 use Illuminate\Support\Facades\App;
-use Process\Models\BasePlanModel;
+use Process\Models\Commentable;
 use Process\Models\Comment;
 use Process\Models\Group;
 use Process\Models\Observers\MarkdownTextObserver;
