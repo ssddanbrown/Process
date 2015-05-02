@@ -24,6 +24,7 @@ Route::delete('/project/{id}', 'ProjectController@destroy');
 // Comments
 Route::post('/project/{projectId}/comment', 'CommentController@saveProjectComment');
 Route::post('/project/{projectId}/group/{groupId}/comment', 'CommentController@saveGroupComment');
+Route::post('/project/{projectId}/task/{taskId}/comment', 'CommentController@saveTaskComment');
 
 // Groups
 Route::get('/project/{projectId}/group/new', 'GroupController@create');
@@ -35,6 +36,7 @@ Route::delete('/project/{projectId}/group/{groupId}', 'GroupController@destroy')
 
 // Tasks
 Route::post('/project/{projectId}/task/create', 'TaskController@save');
+Route::get('/project/{projectId}/task/{id}', 'TaskController@show');
 
 Route::controllers([
 	'auth' => 'Auth\AuthController',

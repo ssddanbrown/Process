@@ -5,19 +5,18 @@ use Process\Http\Requests\CommentRequest;
 use Process\Http\Requests\Request;
 use Process\Models\Comment;
 use Process\Models\Group;
+use Process\Models\Task;
 use Process\Repos\ProjectRepo;
 use Illuminate\Contracts\Auth\Guard as Auth;
 
 class CommentController extends Controller {
 
     protected $comment;
-    protected $projectRepo;
     protected $auth;
 
-    function __construct(Comment $comment, ProjectRepo $projectRepo, Auth $auth)
+    function __construct(Comment $comment, Auth $auth)
     {
         $this->comment = $comment;
-        $this->projectRepo = $projectRepo;
         $this->auth = $auth;
     }
 
@@ -37,13 +36,14 @@ class CommentController extends Controller {
     /**
      * Saves a comment against a project.
      *
-     * @param CommentRequest $request
      * @param int $projectId
+     * @param CommentRequest $request
+     * @param ProjectRepo $projectRepo
      * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
-    public function saveProjectComment(CommentRequest $request, $projectId)
+    public function saveProjectComment($projectId, CommentRequest $request, ProjectRepo $projectRepo)
     {
-        $project = $this->projectRepo->findOrFail($projectId);
+        $project = $projectRepo->findOrFail($projectId);
         $comment = $this->getNewComment($request);
         $project->comments()->save($comment);
         return redirect($project->getLink());
@@ -63,6 +63,23 @@ class CommentController extends Controller {
         $comment = $this->getNewComment($request);
         $group->comments()->save($comment);
         return redirect($group->getLink());
+    }
+
+    /**
+     * Saves a comment against a group.
+     *
+     * @param $projectId
+     * @param $taskId
+     * @param CommentRequest $request
+     * @param Task $injectTask
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+     */
+    public function saveTaskComment($projectId, $taskId, CommentRequest $request, Task $injectTask)
+    {
+        $task = $injectTask->findOrFail($taskId);
+        $comment = $this->getNewComment($request);
+        $task->comments()->save($comment);
+        return redirect($task->getLink());
     }
 
 }

@@ -4,17 +4,20 @@ use Illuminate\Routing\Controller;
 use Process\Http\Requests\BasePlanRequest;
 use Process\Models\Project;
 use Illuminate\Contracts\Auth\Guard as Auth;
+use Process\Repos\ProjectRepo;
 use Process\Services\MessageService;
 
 class ProjectController extends Controller {
 
     protected $project;
+    protected $projectRepo;
     protected $auth;
     protected $messages;
 
-    function __construct(Project $project, Auth $auth, MessageService $messages)
+    function __construct(Project $project, ProjectRepo $projectRepo, Auth $auth, MessageService $messages)
     {
         $this->project = $project;
+        $this->projectRepo = $projectRepo;
         $this->auth = $auth;
         $this->messages = $messages;
     }
@@ -35,7 +38,7 @@ class ProjectController extends Controller {
      */
     public function show($id)
     {
-        $project = $this->project->findOrFail($id);
+        $project = $this->projectRepo->find($id);
         return view('project/show', ['project' => $project]);
     }
 
@@ -60,7 +63,7 @@ class ProjectController extends Controller {
      */
     public function edit($id)
     {
-        $project = $this->project->findOrFail($id);
+        $project = $this->projectRepo->find($id);
         return view('project/edit', ['project' => $project]);
     }
 
@@ -73,7 +76,7 @@ class ProjectController extends Controller {
      */
     public function update($id, BasePlanRequest $request)
     {
-        $project = $this->project->findOrFail($id);
+        $project = $this->projectRepo->find($id);
         $project->fill($request->all());
         $project->save();
         $this->messages->success('Project successfully updated');
@@ -88,9 +91,8 @@ class ProjectController extends Controller {
      */
     public function destroy($id)
     {
-        $project = $this->project->findOrFail($id);
-        $project->comments()->delete();
-        $project->delete();
+        $project = $this->projectRepo->find($id);
+        $this->projectRepo->destroy($project);
         $this->messages->success('Project successfully deleted');
         return redirect('/');
     }

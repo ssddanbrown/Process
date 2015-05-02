@@ -20,6 +20,12 @@ class TaskController extends Controller {
         $this->auth = $auth;
     }
 
+    /**
+     * Creates and returns a populated task
+     *
+     * @param Request $request
+     * @return $this
+     */
     private function getNewTask(Request $request)
     {
         $task = $this->task->fill($request->all());
@@ -27,6 +33,11 @@ class TaskController extends Controller {
         return $task;
     }
 
+    public function show($projectId, $taskId)
+    {
+        $task = $this->task->findOrFail($taskId);
+        return view('task/show', ['task' => $task]);
+    }
 
     /**
      * Save the new task against a group

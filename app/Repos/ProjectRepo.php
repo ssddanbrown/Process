@@ -7,11 +7,13 @@ use Illuminate\Contracts\Auth\Guard as Auth;
 class ProjectRepo {
 
     protected $project;
+    protected $groupRepo;
     protected $auth;
 
-    function __construct(Project $project, Auth $auth)
+    function __construct(Project $project, GroupRepo $groupRepo, Auth $auth)
     {
         $this->project = $project;
+        $this->groupRepo = $groupRepo;
         $this->auth = $auth;
     }
 
@@ -26,15 +28,31 @@ class ProjectRepo {
     }
 
     /**
-     * Finds a project with the given ID or, If it
-     * does not exist, it fails.
+     * A simple find based on ID.
      *
      * @param $id
      * @return mixed
      */
-    public function findOrFail($id)
+    public function find($id)
     {
         return $this->project->findOrFail($id);
     }
+
+    /**
+     * Destroy the given Project and all its dependencies.
+     *
+     * @param Project $project
+     */
+    public function destroy(Project $project)
+    {
+        $this->groupRepo->destroyMany($project->groups);
+        $project->comments()->delete();
+        $project->delete();
+    }
+
+
+
+
+
 
 }
