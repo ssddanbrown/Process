@@ -9,8 +9,8 @@
                 </a>
             </div>
             <div class="list-group">
-                @if(count($group->tasks) > 0)
-                    @include('task/parts/list', ['tasks' => $group->tasks])
+                @if(count($group->outstandingTasks()) > 0)
+                    @include('task/parts/list', ['tasks' => $group->outstandingTasks()])
                 @else
                     <div class="list-group-item">
                         <p class="text-muted">No tasks have been added</p>

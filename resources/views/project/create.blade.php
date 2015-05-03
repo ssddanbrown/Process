@@ -2,30 +2,32 @@
 @extends('app')
 
 @section('content')
-<div class="container">
 
-    <div class="row">
-        <div class="col-md-8 col-md-offset-2">
-            <div class="page-header">
-                <h1>Create a new project</h1>
-            </div>
-
+    <div class="project-title">
+        <div class="container-fluid contained">
+            <h1>New project</h1>
         </div>
     </div>
 
-    <div class="row">
-        <div class="col-md-5 col-md-offset-2">
-            {!! Form::open(['url' => '/new']) !!}
+    <div class="container-fluid contained">
 
-                @include('project/form')
+        <div class="row">
+            <div class="col-md-6">
 
-                <div class="form-group">
-                    <button class="btn btn-success" type="submit">Create project</button>
+                <div class="panel panel-default">
+                    <div class="panel-heading">Project details</div>
+                    <div class="panel-body">
+                        {!! Form::open(['url' => '/new']) !!}
+                        @include('project/form')
+                        <div class="form-group">
+                            <button class="btn btn-success" type="submit">Create project</button>
+                        </div>
+                        {!! Form::close() !!}
+                    </div>
                 </div>
 
-            {!! Form::close() !!}
+            </div>
         </div>
-    </div>
 
-</div>
+    </div>
 @endsection

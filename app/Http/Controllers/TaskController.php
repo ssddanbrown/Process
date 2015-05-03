@@ -110,6 +110,7 @@ class TaskController extends Controller {
         $task = $this->taskRepo->find($taskId);
         $task->complete = !$task->complete;
         $task->save();
+        $this->messages->addComment($task, 'User changed this task\'s status to ' . $task->textStatus());
         return response()->json($task);
     }
 

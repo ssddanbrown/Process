@@ -14,7 +14,7 @@
 
 <div class="form-group @if ($errors->has('color')) has-error @endif">
     {!! Form::label('color', 'Project Color') !!}
-    {!! Form::hidden('color', $project->color ? $project->color : 'teal') !!}
+    {!! Form::hidden('color', isset($project) && $project->color ? $project->color : 'teal') !!}
     <div class="color-palette">
         <span class="teal"></span>
         <span class="blue"></span>

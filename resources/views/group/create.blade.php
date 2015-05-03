@@ -1,29 +1,34 @@
 
 @extends('app')
 
+@section('content-color', $project->color)
+
 @section('content')
-    <div class="container">
 
-        <div class="row">
-            <div class="col-md-8 col-md-offset-2">
-                <div class="page-header">
-                    <h1>Create a new Group</h1>
-                </div>
-
-            </div>
+    <div class="project-title">
+        <div class="container-fluid contained">
+            <h1>Create a new group</h1>
         </div>
+    </div>
+
+    <div class="container-fluid contained">
 
         <div class="row">
-            <div class="col-md-5 col-md-offset-2">
-                {!! Form::open(['url' => $project->getLink() . '/group/new']) !!}
+            <div class="col-md-6">
+                <div class="panel panel-default">
+                    <div class="panel-heading">Group details</div>
+                    <div class="panel-body">
+                        {!! Form::open(['url' => $project->getLink() . '/group/new']) !!}
 
-                @include('group/parts/form')
+                        @include('group/parts/form')
 
-                <div class="form-group">
-                    <button class="btn btn-success" type="submit">Create group</button>
+                        <div class="form-group">
+                            <button class="btn btn-success" type="submit">Create group</button>
+                        </div>
+
+                        {!! Form::close() !!}
+                    </div>
                 </div>
-
-                {!! Form::close() !!}
             </div>
         </div>
 

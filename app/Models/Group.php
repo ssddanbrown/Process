@@ -23,9 +23,24 @@ class Group extends Commentable {
      */
     public function tasks()
     {
-        return $this->hasMany('Process\Models\Task');
+        return $this->hasMany('Process\Models\Task')->orderBy('complete', 'asc');
     }
 
+    /**
+     * Gets the tasks that are outstanding
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function outstandingTasks()
+    {
+        return $this->hasMany('Process\Models\Task')->where('complete', '=', false)->get();
+    }
+
+    /**
+     * Get the url for this group.
+     *
+     * @return string
+     */
     public function getLink()
     {
         return '/project/' . $this->project_id . '/group/' . $this->id;
