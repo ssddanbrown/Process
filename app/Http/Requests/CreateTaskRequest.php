@@ -23,6 +23,7 @@ class CreateTaskRequest extends Request {
 	{
 		return [
             'name' => 'required|string|min:4',
+            'text' => 'string',
             'group_id' => 'required|integer|exists:groups,id'
 		];
 	}

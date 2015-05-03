@@ -23,6 +23,7 @@ class BasePlanRequest extends Request {
 	{
 		return [
 			'name' => 'required|string|min:4',
+            'color' => 'in:teal,blue,red,grey,green,purple',
             'text' => 'string'
 		];
 	}

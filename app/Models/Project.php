@@ -2,7 +2,7 @@
 
 class Project extends Commentable {
 
-	protected $fillable = ['name', 'text'];
+	protected $fillable = ['name', 'text', 'color'];
 
 
     /**

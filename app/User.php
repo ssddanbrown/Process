@@ -42,4 +42,19 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
         return $this->hasMany('Process\Models\Project');
     }
 
+    /**
+     * Gets an avatar image for the user.
+     * By default it uses a gravatar.
+     *
+     * @param int $size
+     * @return string
+     */
+    public function getAvatar($size = 50)
+    {
+        $email = md5(trim($this->email));
+        $default = 'identicon';
+        $url = '//www.gravatar.com/avatar/';
+        return  $url . $email . '?d=' . $default . '&s=' . $size;
+    }
+
 }

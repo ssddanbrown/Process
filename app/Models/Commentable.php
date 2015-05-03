@@ -13,7 +13,7 @@ class Commentable extends Model {
      */
     public function comments()
     {
-        return $this->morphMany('Process\Models\Comment', 'commentable');
+        return $this->morphMany('Process\Models\Comment', 'commentable')->orderBy('created_at', 'desc');
     }
 
 

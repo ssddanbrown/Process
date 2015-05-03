@@ -26,7 +26,7 @@
             <div class="col-md-5 col-md-offset-1">
                 <div class="panel panel-danger">
                     <div class="panel-heading">
-                        Delete Project
+                        Delete Group
                     </div>
                     <div class="panel-body">
                         <p>This will delete the group and all associated content.</p>

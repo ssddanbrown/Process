@@ -1,29 +1,37 @@
 
 @extends('app')
 
+@section('content-color', $project->color)
+
 @section('content')
-    <div class="container">
 
-
-        <div class="page-header">
-            <h1>Edit project</h1>
+    <div class="project-title">
+        <div class="container-fluid contained">
+            <h1>Edit project - {{ $project->name }}</h1>
         </div>
+    </div>
 
-
+    <div class="container-fluid contained">
         <div class="row">
-            <div class="col-md-5">
-                {!! Form::model($project, ['url' => $project->getLink() .'/update', 'method' => 'put']) !!}
+            <div class="col-md-6">
+                <div class="panel panel-default">
+                    <div class="panel-heading">Edit Details</div>
+                    <div class="panel-body">
+                        {!! Form::model($project, ['url' => $project->getLink() .'/update', 'method' => 'put']) !!}
 
-                @include('project/form')
+                        @include('project/form')
 
-                <div class="form-group">
-                    <button class="btn btn-success" type="submit">Save project</button>
-                    <a class="btn btn-default" href="{{ $project->getLink() }}">Cancel</a>
+                        <div class="form-group">
+                            <button class="btn btn-success" type="submit">Save project</button>
+                            <a class="btn btn-default" href="{{ $project->getLink() }}">Cancel</a>
+                        </div>
+
+                        {!! Form::close() !!}
+                    </div>
                 </div>
 
-                {!! Form::close() !!}
             </div>
-            <div class="col-md-5 col-md-offset-1">
+            <div class="col-md-4 col-md-offset-2">
                 <div class="panel panel-danger">
                     <div class="panel-heading">
                         Delete Project

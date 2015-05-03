@@ -3,6 +3,23 @@ $bootstrap-sass-asset-helper: false !default;
 // Variables
 // --------------------------------------------------
 
+// Custom Spacing
+$-xxxl: 64px;
+$-xxl: 48px;
+$-xl: 32px;
+$-l: 24px;
+$-m: 16px;
+$-s: 12px;
+$-xs: 6px;
+$-xxs: 3px;
+
+// Custom boxshadows
+$bs-card: 0 0 1px 1px rgba(0,0,0,.05);
+$bs-card-hover: 0 1px 2px 2px rgba(0,0,0,.05);
+$bs-tag-hover: 0 1px 2px 2px rgba(0,0,0,.1);
+
+$anim-time: cubic-bezier(.62,.28,.23,.99);
+
 
 //== Colors
 //
@@ -15,11 +32,18 @@ $gray:                   lighten($gray-base, 33.5%) !default; // #555
 $gray-light:             lighten($gray-base, 46.7%) !default; // #777
 $gray-lighter:           lighten($gray-base, 93.5%) !default; // #eee
 
-$brand-primary:         darken(#428bca, 6.5%) !default; // #337ab7
-$brand-success:         #5cb85c !default;
+$brand-primary:         #2196F3 !default; // #337ab7
+$brand-success:         #4CAF50 !default;
 $brand-info:            #5bc0de !default;
-$brand-warning:         #f0ad4e !default;
-$brand-danger:          #d9534f !default;
+$brand-warning:         #FF9800 !default;
+$brand-danger:          #F44336 !default;
+
+$color-teal: #009688;
+$color-blue: #2196F3;
+$color-red: #F44336;
+$color-grey: #607D8B;
+$color-green: #4CAF50;
+$color-purple: #3F51B5;
 
 
 //== Scaffolding
@@ -27,9 +51,9 @@ $brand-danger:          #d9534f !default;
 //## Settings for some of the most global styles.
 
 //** Background color for `<body>`.
-$body-bg:               #fff !default;
+$body-bg: #F4F4F4 !default;
 //** Global text color on `<body>`.
-$text-color:            $gray-dark !default;
+$text-color:            #666 !default;
 
 //** Global textual link color.
 $link-color:            $brand-primary !default;
@@ -43,7 +67,7 @@ $link-hover-decoration: underline !default;
 //
 //## Font, line-height, and color for body text, headings, and more.
 
-$font-family-sans-serif:  "Open Sans", Helvetica, Arial, sans-serif !default;
+$font-family-sans-serif:  "Roboto", Helvetica, Arial, sans-serif !default;
 $font-family-serif:       Georgia, "Times New Roman", Times, serif !default;
 //** Default monospace fonts for `<code>`, `<kbd>`, and `<pre>`.
 $font-family-monospace:   Menlo, Monaco, Consolas, "Courier New", monospace !default;
@@ -69,7 +93,7 @@ $line-height-computed:    floor(($font-size-base * $line-height-base)) !default;
 $headings-font-family:    inherit !default;
 $headings-font-weight:    500 !default;
 $headings-line-height:    1.1 !default;
-$headings-color:          inherit !default;
+$headings-color:          #444 !default;
 
 
 //== Iconography
@@ -147,7 +171,7 @@ $table-border-color:            #ddd !default;
 //
 //## For each of Bootstrap's buttons, define text, background and border color.
 
-$btn-font-weight:                normal !default;
+$btn-font-weight:                500 !default;
 
 $btn-default-color:              #333 !default;
 $btn-default-bg:                 #fff !default;
@@ -495,8 +519,8 @@ $jumbotron-font-size:            ceil(($font-size-base * 1.5)) !default;
 //
 //## Define colors for form feedback states and, by default, alerts.
 
-$state-success-text:             #3c763d !default;
-$state-success-bg:               #dff0d8 !default;
+$state-success-text:             #EEEEEE !default;
+$state-success-bg:               $brand-success !default;
 $state-success-border:           darken(adjust-hue($state-success-bg, -10), 5%) !default;
 
 $state-info-text:                #31708f !default;
@@ -507,8 +531,8 @@ $state-warning-text:             #8a6d3b !default;
 $state-warning-bg:               #fcf8e3 !default;
 $state-warning-border:           darken(adjust-hue($state-warning-bg, -10), 5%) !default;
 
-$state-danger-text:              #a94442 !default;
-$state-danger-bg:                #f2dede !default;
+$state-danger-text:              #EEEEEE !default;
+$state-danger-bg:                $brand-danger !default;
 $state-danger-border:            darken(adjust-hue($state-danger-bg, -10), 5%) !default;
 
 
@@ -705,15 +729,15 @@ $panel-bg:                    #fff !default;
 $panel-body-padding:          15px !default;
 $panel-heading-padding:       10px 15px !default;
 $panel-footer-padding:        $panel-heading-padding !default;
-$panel-border-radius:         $border-radius-base !default;
+$panel-border-radius:         $border-radius-small !default;
 
 //** Border color for elements within panels
 $panel-inner-border:          #ddd !default;
 $panel-footer-bg:             #f5f5f5 !default;
 
-$panel-default-text:          $gray-dark !default;
-$panel-default-border:        #ddd !default;
-$panel-default-heading-bg:    #f5f5f5 !default;
+$panel-default-text:          #EEE !default;
+$panel-default-border: #e6e6e6 !default;
+$panel-default-heading-bg:    #009688 !default;
 
 $panel-primary-text:          #fff !default;
 $panel-primary-border:        $brand-primary !default;

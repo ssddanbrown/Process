@@ -37,6 +37,10 @@ Route::delete('/project/{projectId}/group/{groupId}', 'GroupController@destroy')
 // Tasks
 Route::post('/project/{projectId}/task/create', 'TaskController@save');
 Route::get('/project/{projectId}/task/{id}', 'TaskController@show');
+Route::get('/project/{projectId}/task/{taskId}/settings', 'TaskController@edit');
+Route::put('/project/{projectId}/task/{id}/update', 'TaskController@update');
+Route::delete('/project/{projectId}/task/{id}', 'TaskController@destroy');
+Route::patch('/api/project/{projectId}/task/{id}/check', 'TaskController@apiToggleComplete');
 
 Route::controllers([
 	'auth' => 'Auth\AuthController',

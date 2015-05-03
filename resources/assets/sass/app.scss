@@ -1,3 +1,241 @@
-
 @import 'bootstrap';
 
+// Stucture
+
+html, body {
+  height: 100%;
+  min-height: 100%;
+}
+
+.container-fluid.contained {
+  max-width: 1100px;
+}
+
+$sidebar-width: 250px;
+#sidebar {
+  position: fixed;
+  left: $sidebar-width;
+  margin-left: -$sidebar-width;
+  width: $sidebar-width;
+  float: left;
+  background-color: #FFF;
+  border-right: 1px solid #DDD;
+}
+
+#content {
+  padding-left: $sidebar-width;
+  height: 100%;
+  min-height: 100%;
+}
+
+#content, #sidebar {
+  height: 100%;
+  min-height: 100%;
+  overflow-y: auto;
+}
+
+// Sidebar
+.logo a {
+  display: block;
+  font-size: 2em;
+  color: #888;
+  padding: $-xl $-m;
+  border-bottom: 1px solid #DDD;
+}
+
+
+// Components
+.panel-form {
+  .form-group {
+    margin-bottom: 0;
+  }
+  .input-group input.form-control, .input-group button {
+    border-radius: 0;
+    border: 0;
+    padding: $-s $-m;
+    height: 44px;
+    box-shadow: none;
+    z-index: 2;
+  }
+  .input-group button {
+    margin-right: -1px;
+  }
+  .help-block {
+    color: $brand-danger;
+    padding: $-s $-m;
+    border-top: 1px solid #EEE;
+    margin: 0;
+  }
+}
+
+.comment-box {
+  textarea.form-control {
+    max-width: 100%;
+  }
+  .avatar {
+    border-radius: 100%;
+    float: left;
+  }
+  .content {
+    margin-left: 72px;
+    overflow: hidden;
+  }
+}
+
+.color-palette > span {
+  display: inline-block;
+  width: 30px;
+  height: 30px;
+  border-radius: 100%;
+  background-color: transparent;
+  border: 3px solid #DDD;
+  margin-right: $-xs;
+  cursor: pointer;
+  transition: background-color $anim-time 120ms;
+  &.teal {
+    border-color: $color-teal;
+  }
+  &.teal.selected {
+    background-color: $color-teal;
+  }
+  &.blue {
+    border-color: $color-blue;
+  }
+  &.blue.selected {
+    background-color: $color-blue;
+  }
+  &.red {
+    border-color: $color-red;
+  }
+  &.red.selected {
+    background-color: $color-red;
+  }
+  &.grey {
+    border-color: $color-grey;
+  }
+  &.grey.selected {
+    background-color: $color-grey;
+  }
+  &.green {
+    border-color: $color-green;
+  }
+  &.green.selected {
+    background-color: $color-green;
+  }
+  &.purple {
+    border-color: $color-purple;
+  }
+  &.purple.selected {
+    background-color: $color-purple;
+  }
+}
+// Color schemes
+.project-title, .panel-default .panel-heading {
+  transition: background-color $anim-time 120ms;
+}
+#content.teal {
+  .project-title, .panel-default .panel-heading {
+    background-color: $color-teal;
+  }
+}
+#content.blue {
+  .project-title, .panel-default .panel-heading {
+    background-color: $color-blue;
+  }
+}
+#content.red {
+  .project-title, .panel-default .panel-heading {
+    background-color: $color-red;
+  }
+}
+#content.grey {
+  .project-title, .panel-default .panel-heading {
+    background-color: $color-grey;
+  }
+}
+#content.green {
+  .project-title, .panel-default .panel-heading {
+    background-color: $color-green;
+  }
+}
+#content.purple {
+  .project-title, .panel-default .panel-heading {
+    background-color: $color-purple;
+  }
+}
+
+// Project-specific
+
+.project-title {
+  padding: $-xl 0;
+  background-color: #009688;
+  position: relative;
+  overflow: hidden;
+  border-bottom: 1px solid #e5e5e5;
+  margin-bottom: $-xl;
+  box-shadow: $bs-card;
+  h1 {
+    font-size: 3em;
+    font-weight: 200;
+    color: #EEE;
+  }
+  .button-group {
+    position: absolute;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    a {
+      color: rgba(0, 0, 0, 0.40);
+      font-size: 2em;
+      padding: $-m;
+    }
+  }
+}
+
+.crumbs {
+  font-size: 1.333em;
+  color: #888;
+  margin-bottom: $-l;
+  a {
+    color: #888;
+  }
+}
+
+// Task specific
+
+.task-item {
+  display: block;
+  position: relative;
+  border-radius: 2px;
+  padding: 0;
+  i {
+    color: #888;
+  }
+  .task-checkbox {
+    padding: $-s $-m;
+    cursor: pointer;
+    display: inline-block;
+    border-right: 1px solid #EEE;
+    float: left;
+    width: 44px;
+  }
+  > a {
+    display: block;
+    padding: $-s $-m;
+    margin-left: 44px;
+  }
+  i.fa.fa-check-square-o {
+    display: none;
+  }
+  &.complete {
+    a {
+      text-decoration: line-through;
+    }
+    i.fa.fa-check-square-o {
+      display: inline;
+    }
+    i.fa.fa-square-o {
+      display: none;
+    }
+  }
+}

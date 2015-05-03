@@ -1,52 +1,50 @@
 
 @extends('app')
 
+@section('content-color', $group->project->color)
+
 @section('content')
-<div class="container">
     
-    <div class="page-header clearfix">
-        <h1 class="pull-left"><a href="{{ $group->project->getLink() }}">{{ $group->project->name }}</a> / {{ $group->name }}</h1>
-        <div class="button-group pull-right">
-            <a class="btn btn-default" href="{{ $group->getLink() . '/settings' }}">Settings</a>
-        </div>
+<div class="project-title clearfix">
+    <div class="container-fluid contained">
+        <h1>{{ $group->name }}</h1>
     </div>
 
-    <div class="text-muted">
-        {!! $group->html !!}
+    <div class="button-group">
+        <a href="{{ $group->getLink() . '/settings' }}"><i class="fa fa-cog"></i></a>
     </div>
+</div>
 
+<div class="container-fluid contained">
+    <p class="text-muted crumbs">
+        <a href="{{ $group->project->getLink() }}">{{ $group->project->name }}</a>
+    </p>
+</div>
+
+<div class="container-fluid contained">
     <div class="row">
 
         <div class="col-md-6">
+
+            @if(!empty($group->html))
+                <div class="panel panel-default">
+                    <div class="panel-heading">Details</div>
+                    <div class="panel-body">
+                        {!! $group->html !!}
+                    </div>
+                </div>
+            @endif
+
             @include('comments/feed', ['commentable' => $group])
         </div>
 
         <div class="col-md-6">
-            <h2>Tasks</h2>
-            <div class="list-group">
-                @foreach($group->tasks as $task)
-                    <div class="list-group-item">
-                        <a href="{{ $task->getLink() }}">{{ $task->name }}</a>
-                    </div>
-                @endforeach
-            </div>
             <div class="comment-box panel panel-default">
-                <div class="panel-heading">Add a Task</div>
-                <div class="panel-body">
-                    {!! Form::open(['class' => 'form', 'url' => $group->project->getLink() . '/task/create']) !!}
-                        {!! Form::hidden('group_id', $group->id) !!}
-                        <div class="form-group @if ($errors->has('name')) has-error @endif">
-                            {!! Form::label('name', 'Add a new task') !!}
-                            <div class="input-group">
-                                {!! Form::text('name', null, ['placeholder' => 'Enter your task', 'class' => 'form-control', 'tabindex' => '1']) !!}
-                                <span class="input-group-btn">
-                                    <button type="submit" class="btn btn-success">Add Task</button>
-                                </span>
-                            </div>
-                            @if ($errors->has('name')) <p class="help-block">{{ $errors->first('name') }}</p> @endif
-                        </div>
-                    {!! Form::close() !!}
+                <div class="panel-heading">Tasks</div>
+                <div class="list-group">
+                    @include('task/parts/list', ['tasks' => $group->tasks])
                 </div>
+                @include('task/parts/panel-form', ['group' => $group])
             </div>
         </div>
 

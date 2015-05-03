@@ -8,9 +8,9 @@
 
 .alert {
   padding: $alert-padding;
-  margin-bottom: $line-height-computed;
-  border: 1px solid transparent;
-  border-radius: $alert-border-radius;
+  margin-bottom: 0;
+  border: none;
+  border-radius: 0;
 
   // Headings for larger alerts
   h4 {

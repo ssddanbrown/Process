@@ -3,7 +3,7 @@
 
 class Task extends Commentable {
 
-    protected $fillable = ['name', 'description'];
+    protected $fillable = ['name', 'text'];
 
     /**
      * Define the relation to group.

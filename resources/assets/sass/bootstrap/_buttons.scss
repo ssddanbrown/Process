@@ -17,7 +17,8 @@
   background-image: none; // Reset unusual Firefox-on-Android default style; see https://github.com/necolas/normalize.css/issues/214
   border: 1px solid transparent;
   white-space: nowrap;
-  @include button-size($padding-base-vertical, $padding-base-horizontal, $font-size-base, $line-height-base, $border-radius-base);
+  transition: all $anim-time 120ms;
+  @include button-size($padding-base-vertical, $padding-base-horizontal, $font-size-base, $line-height-base, $border-radius-small);
   @include user-select(none);
 
   &,
@@ -157,4 +158,21 @@ input[type="button"] {
   &.btn-block {
     width: 100%;
   }
+}
+
+
+// Circle Buttons
+// --------------------------------------------------
+
+.btn.circle {
+  background-color: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.8);
+  color: rgba(255, 255, 255, 0.6);
+  padding: 4px;
+  border-radius: 100%;
+  font-weight: normal;
+  font-size: 12px;
+  width: 20px;
+  height: 20px;
+  line-height: 1;
 }

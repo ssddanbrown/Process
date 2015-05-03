@@ -61,6 +61,7 @@ class GroupController extends Controller {
 
     /**
      * Shows the page to edit a group.
+     *
      * @param $projectId
      * @param $groupId
      * @return \Illuminate\View\View
@@ -71,6 +72,14 @@ class GroupController extends Controller {
         return view('group/edit', ['group' => $group]);
     }
 
+    /**
+     * Updates a group.
+     *
+     * @param $projectId
+     * @param $groupId
+     * @param BasePlanRequest $request
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+     */
     public function update($projectId, $groupId, BasePlanRequest $request)
     {
         $group = $this->groupRepo->find($groupId);
