@@ -42,7 +42,11 @@ class TaskController extends Controller {
 	public function save($projectId, CreateTaskRequest $request)
     {
         $group = $this->groupRepo->find($request->get('group_id'));
-        $this->taskRepo->saveNew($request->all(), $group);
+        $task = $this->taskRepo->saveNew($request->all(), $group);
+
+        if ($request->has('ajax') && $request->get('ajax') == true) {
+            return view('task/parts/task-item', ['task' => $task]);
+        }
 
         if ($request->has('return') && $request->get('return') == 'project') {
             return redirect($group->project->getLink());

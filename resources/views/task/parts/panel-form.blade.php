@@ -1,6 +1,6 @@
 
 <div class="panel-form">
-    {!! Form::open(['class' => 'form', 'url' => $group->project->getLink() . '/task/create']) !!}
+    {!! Form::open(['class' => 'form task-form-ajax', 'url' => $group->project->getLink() . '/task/create']) !!}
     {!! Form::hidden('group_id', $group->id) !!}
     {!! Form::hidden('return', isset($return) ? $return : 'group') !!}
     <div class="form-group @if ($errors->has('name')) has-error @endif">

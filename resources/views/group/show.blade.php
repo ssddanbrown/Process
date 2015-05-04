@@ -39,12 +39,12 @@
         </div>
 
         <div class="col-md-6">
-            <div class="comment-box panel panel-default">
+            <div class="comment-box panel panel-default group-box">
                 <div class="panel-heading">Tasks</div>
-                <div class="list-group">
+                @include('task/parts/panel-form', ['group' => $group])
+                <div class="list-group task-list-group">
                     @include('task/parts/list', ['tasks' => $group->tasks])
                 </div>
-                @include('task/parts/panel-form', ['group' => $group])
             </div>
         </div>
 

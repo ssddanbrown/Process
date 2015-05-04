@@ -30,12 +30,14 @@ class TaskRepo {
      *
      * @param array $attributes
      * @param Group $group
+     * @return Task
      */
     public function saveNew($attributes, Group $group)
     {
         $this->task->fill($attributes);
         $this->task->user_id = $this->auth->user()->id;
         $group->tasks()->save($this->task);
+        return $this->task;
     }
 
     /**
