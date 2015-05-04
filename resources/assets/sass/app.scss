@@ -49,13 +49,21 @@ $sidebar-width: 250px;
   .form-group {
     margin-bottom: 0;
   }
-  .input-group input.form-control, .input-group button {
+  .input-group input.form-control, .input-group button, .input-group textarea.form-control {
     border-radius: 0;
     border: 0;
     padding: $-s $-m;
     height: 44px;
     box-shadow: none;
     z-index: 2;
+  }
+  .input-group textarea.form-control {
+    max-width: 100%;
+    border-right: 1px solid #EEE;
+    height: auto;
+  }
+  .input-group textarea.form-control + .input-group-btn {
+    vertical-align: top;
   }
   .input-group button {
     margin-right: -1px;
@@ -69,9 +77,6 @@ $sidebar-width: 250px;
 }
 
 .comment-box {
-  textarea.form-control {
-    max-width: 100%;
-  }
   .avatar {
     border-radius: 100%;
     float: left;

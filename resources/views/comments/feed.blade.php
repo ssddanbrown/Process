@@ -2,16 +2,19 @@
 
 <div class="comment-box panel panel-default">
     <div class="panel-heading">Comments</div>
-    <div class="panel-body">
+    <div class="panel-form">
         {!! Form::open(['class' => 'form', 'url' => $commentable->getLink() . '/comment']) !!}
         <div class="form-group @if ($errors->has('text')) has-error @endif">
-            {!! Form::label('text', 'Write a comment') !!}
-            {!! Form::textarea('text', null, ['placeholder' => 'Enter your comment', 'class' => 'form-control', 'rows' => 3]) !!}
-            @if ($errors->has('text')) <p class="help-block">{{ $errors->first('text') }}</p> @endif
+
+
         </div>
-        <div class="form-group clearfix">
-            <button type="submit" class="pull-right btn btn-success">Comment</button>
+        <div class="input-group clearfix">
+            {!! Form::textarea('text', null, ['placeholder' => 'Enter a comment', 'class' => 'form-control', 'rows' => 3]) !!}
+            <div class="input-group-btn">
+                <button type="submit" class="btn btn-success">Comment</button>
+            </div>
         </div>
+        @if ($errors->has('text')) <p class="help-block">{{ $errors->first('text') }}</p> @endif
         {!! Form::close() !!}
     </div>
     <div class="list-group">

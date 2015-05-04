@@ -7,7 +7,7 @@
         <div class="input-group">
             {!! Form::text('name', null, ['placeholder' => 'Add a new task', 'class' => 'form-control', 'tabindex' => '1', 'required' => true]) !!}
             <span class="input-group-btn">
-                <button type="submit" class="btn btn-success">Add Task</button>
+                <button type="submit" class="btn btn-success">Add task</button>
             </span>
         </div>
         @if ($errors->has('name')) <p class="help-block">{{ $errors->first('name') }}</p> @endif

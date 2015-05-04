@@ -24,6 +24,7 @@
 
                         <div class="form-group">
                             <button class="btn btn-success" type="submit">Create group</button>
+                            <a class="btn btn-default" href="{{ $project->getLink() }}">Cancel</a>
                         </div>
 
                         {!! Form::close() !!}
